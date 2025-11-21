@@ -1,0 +1,29 @@
+{
+  "name": "csc3131_2068068_2025-26",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newcastleuniversity-computing/CSC3131_2068068_2025-26.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/newcastleuniversity-computing/CSC3131_2068068_2025-26/issues"
+  },
+  "homepage": "https://github.com/newcastleuniversity-computing/CSC3131_2068068_2025-26#readme",
+  "dependencies": {
+    "better-sqlite3": "^12.4.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}

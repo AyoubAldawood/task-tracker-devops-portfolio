@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Edit Task</title>
+  </head>
+  <body>
+    <h1>Edit Task</h1>
+
+    <form action="/tasks/<%= task.id %>" method="POST">
+      <div>
+        <label>Title:</label><br />
+        <input type="text" name="title" value="<%= task.title %>" required />
+      </div>
+
+      <div>
+        <label>Description:</label><br />
+        <textarea name="description" rows="4"><%= task.description %></textarea>
+      </div>
+
+      <div>
+        <label>Status:</label><br />
+        <select name="status">
+          <option value="todo" <%= task.status === 'todo' ? 'selected' : '' %>>To Do</option>
+          <option value="in-progress" <%= task.status === 'in-progress' ? 'selected' : '' %>>In Progress</option>
+          <option value="done" <%= task.status === 'done' ? 'selected' : '' %>>Done</option>
+        </select>
+      </div>
+
+      <br />
+      <button type="submit">Save Changes</button>
+    </form>
+
+    <p><a href="/tasks">⬅ Back</a></p>
+  </body>
+</html>
