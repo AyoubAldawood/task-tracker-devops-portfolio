@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db");
+const logger = require("../logger");
+
 
 // List all tasks
 router.get("/", (req, res) => {
@@ -22,9 +24,11 @@ router.post("/", (req, res) => {
     VALUES (?, ?, ?)
   `);
 
-  stmt.run(title, description, status || "todo");
+stmt.run(title, description, status || "todo");
+logger.info(`Task created: title="${title}", status="${status || "todo"}"`);
 
-  res.redirect("/tasks");
+res.redirect("/tasks");
+
 });
 
 // Show edit form
@@ -45,12 +49,15 @@ router.post("/:id", (req, res) => {
   const { title, description, status } = req.body;
 
   db.prepare(`
-    UPDATE tasks
-    SET title = ?, description = ?, status = ?, updated_at = CURRENT_TIMESTAMP
-    WHERE id = ?
-  `).run(title, description, status, id);
+  UPDATE tasks
+  SET title = ?, description = ?, status = ?, updated_at = CURRENT_TIMESTAMP
+  WHERE id = ?
+`).run(title, description, status, id);
 
-  res.redirect("/tasks");
+logger.info(`Task updated: id=${id}, newStatus="${status}"`);
+
+res.redirect("/tasks");
+
 });
 
 // Handle deleting a task
@@ -59,7 +66,9 @@ router.post("/:id/delete", (req, res) => {
 
   db.prepare("DELETE FROM tasks WHERE id = ?").run(id);
 
-  res.redirect("/tasks");
+logger.info(`Task deleted: id=${id}`);
+
+res.redirect("/tasks");
 });
 
 module.exports = router;

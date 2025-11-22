@@ -11,3 +11,5 @@ services:
     volumes:
       # Bind-mount the SQLite DB so data persists outside the container
       - ./devops_task_tracker.db:/app/devops_task_tracker.db
+      # Bind-mount logs so container logs appear on the host
+      - ./logs:/app/logs
