@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: devops-task-tracker-app
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+    volumes:
+      # Bind-mount the SQLite DB so data persists outside the container
+      - ./devops_task_tracker.db:/app/devops_task_tracker.db
