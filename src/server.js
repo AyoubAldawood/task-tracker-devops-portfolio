@@ -19,6 +19,18 @@ app.use((req, res, next) => {
   next();
 });
 
+// Simple health check endpoint
+app.get("/health", (req, res) => {
+  const healthInfo = {
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  };
+
+  logger.info(`Health check accessed: ${JSON.stringify(healthInfo)}`);
+  res.status(200).json(healthInfo);
+});
+
 
 // Home route
 app.get("/", (req, res) => {
@@ -28,6 +40,23 @@ app.get("/", (req, res) => {
 // Tasks route
 const tasksRouter = require("./routes/tasks");
 app.use("/tasks", tasksRouter);
+
+// 404 handler (for routes that don't match anything above)
+app.use((req, res, next) => {
+  res.status(404);
+  logger.warn(`404 Not Found: ${req.method} ${req.url}`);
+  res.render("error", { status: 404, message: "Page not found" });
+});
+
+// Generic error handler
+app.use((err, req, res, next) => {
+  logger.error(`Unhandled error: ${err.message}`);
+  console.error(err);
+
+  res.status(500);
+  res.render("error", { status: 500, message: "Something went wrong." });
+});
+
 
 app.listen(PORT, () => {
   logger.info(`Server running at http://localhost:${PORT}`);
