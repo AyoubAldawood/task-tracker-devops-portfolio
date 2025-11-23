@@ -58,6 +58,13 @@ app.use((err, req, res, next) => {
 });
 
 
-app.listen(PORT, () => {
-  logger.info(`Server running at http://localhost:${PORT}`);
-});
+// Only start the server if this file is run directly (not when required by tests)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    logger.info(`Server running at http://localhost:${PORT}`);
+  });
+}
+
+// Export the app for testing
+module.exports = app;
+
