@@ -32,9 +32,9 @@ app.get("/health", (req, res) => {
 });
 
 
-// Home route
+// Home route redirects to tasks
 app.get("/", (req, res) => {
-  res.send("DevOps Task Tracker – it works!");
+  res.redirect("/tasks");
 });
 
 // Tasks route
