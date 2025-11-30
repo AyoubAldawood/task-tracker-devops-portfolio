@@ -47,36 +47,41 @@ npm run dev
 ```
 
 Then visit:
-http://localhost:3000/ – redirects to /tasks
-http://localhost:3000/tasks – main UI
-http://localhost:3000/health – JSON health check
+- `http://localhost:3000/` – redirects to `/tasks` 
+- `http://localhost:3000/tasks` – main UI 
+- `http://localhost:3000/health` – JSON health check
 
 ---
 
 ## Running with Docker
 Build and run the container directly:
 
+```bash
 # Build the image
 docker build -t devops-task-tracker .
 
 # Run the container
 docker run --rm -p 3000:3000 devops-task-tracker
 
-Or using docker-compose:
+# Or using docker-compose:
 docker compose up --build
+```
 
-This will:
-Run the app on port 3000
-Bind-mount devops_task_tracker.db so the SQLite data persists
-Bind-mount logs/ so logs/app.log is available on the host
+**This will:**
+
+- Run the app on port **3000**
+- Bind-mount `devops_task_tracker.db` so the SQLite data persists
+- Bind-mount `logs/` so `logs/app.log` is available on the host
 
 ---
 
 ## Tests
 
-The project includes a basic Jest test for the /health endpoint.
+The project includes a basic Jest test for the `/health` endpoint.
 
-npm test 
+```bash
+npm test
+```
 
 GitHub Actions runs the same tests on every push or pull request to the main branch.
 
@@ -86,6 +91,14 @@ GitHub Actions runs the same tests on every push or pull request to the main bra
 
 The Docker image is pushed to Docker Hub and deployed to Azure App Service (Linux Web App for Containers) using the public image:
 
-ayoubaldawood/devops-task-tracker:latest
+- ayoubaldawood/devops-task-tracker:latest
 
 The Azure Web App pulls this container image and exposes the application over HTTPS.
+
+---
+
+## Requirements mapping
+
+Evidence for how this repository meets the CSC3131 coursework requirements is documented in:
+
+- `REQUIREMENTS.md`
