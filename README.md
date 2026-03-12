@@ -4,6 +4,14 @@ This repository contains my individual portfolio project for **CSC3131 – Devel
 
 The application is a simple **DevOps Task Tracker** built with **Node.js, Express, EJS and SQLite**. It is used as a vehicle to demonstrate DevOps practices such as containerisation, deployment to Azure, logging, monitoring/health checks and Continuous Integration.
 
+> Note: This was originally developed and first published in the “Newcastle University Computing” GitHub organisation as part of the CSC3131 module. A public copy has then been published on my GitHub here.
+
+---
+
+## Project Outputs
+
+- [Read Project Report](./DevOps-Report.pdf)
+
 ---
 
 ## Features
